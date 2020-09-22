@@ -8,11 +8,11 @@ import XCTest
 
     private var stashed_swift_reportFatalErrorsToDebugger: Bool = false
 
-    @objc func testCaseWillStart(_ testCase: XCTestCase) {
+    @objc public func testCaseWillStart(_ testCase: XCTestCase) {
         currentTestCase = testCase
     }
 
-    @objc func testCaseDidFinish(_ testCase: XCTestCase) {
+    @objc public func testCaseDidFinish(_ testCase: XCTestCase) {
         currentTestCase = nil
     }
 }
