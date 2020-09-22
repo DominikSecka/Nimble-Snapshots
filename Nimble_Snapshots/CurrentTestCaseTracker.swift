@@ -1,20 +1,28 @@
 import XCTest
 
 /// Helper class providing access to the currently executing XCTestCase instance, if any
-@objc
-public final class CurrentTestCaseTracker: NSObject, XCTestObservation {
-    @objc public static let shared = CurrentTestCaseTracker()
+@objc final internal class CurrentTestCaseTracker: NSObject, XCTestObservation {
+    @objc static let sharedInstance = CurrentTestCaseTracker()
 
     private(set) var currentTestCase: XCTestCase?
 
-    @objc
-    public func testCaseWillStart(_ testCase: XCTestCase) {
+    private var stashed_swift_reportFatalErrorsToDebugger: Bool = false
+
+    @objc func testCaseWillStart(_ testCase: XCTestCase) {
+        #if os(macOS) || os(iOS)
+        stashed_swift_reportFatalErrorsToDebugger = _swift_reportFatalErrorsToDebugger
+        _swift_reportFatalErrorsToDebugger = false
+        #endif
+
         currentTestCase = testCase
     }
 
-    @objc
-    public func testCaseDidFinish(_ testCase: XCTestCase) {
+    @objc func testCaseDidFinish(_ testCase: XCTestCase) {
         currentTestCase = nil
+
+        #if os(macOS) || os(iOS)
+        _swift_reportFatalErrorsToDebugger = stashed_swift_reportFatalErrorsToDebugger
+        #endif
     }
 }
 
