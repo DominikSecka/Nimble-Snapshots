@@ -9,20 +9,11 @@ import XCTest
     private var stashed_swift_reportFatalErrorsToDebugger: Bool = false
 
     @objc func testCaseWillStart(_ testCase: XCTestCase) {
-        #if os(macOS) || os(iOS)
-        stashed_swift_reportFatalErrorsToDebugger = _swift_reportFatalErrorsToDebugger
-        _swift_reportFatalErrorsToDebugger = false
-        #endif
-
         currentTestCase = testCase
     }
 
     @objc func testCaseDidFinish(_ testCase: XCTestCase) {
         currentTestCase = nil
-
-        #if os(macOS) || os(iOS)
-        _swift_reportFatalErrorsToDebugger = stashed_swift_reportFatalErrorsToDebugger
-        #endif
     }
 }
 

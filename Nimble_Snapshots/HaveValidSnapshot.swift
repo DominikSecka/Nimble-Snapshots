@@ -272,7 +272,7 @@ private func recordSnapshot(_ name: String?,
 }
 
 private func currentTestName() -> String? {
-    return CurrentTestCaseTracker.shared.currentTestCase?.sanitizedName
+    return CurrentTestCaseTracker.sharedInstance.currentTestCase?.sanitizedName
 }
 
 internal var switchChecksWithRecords = false
