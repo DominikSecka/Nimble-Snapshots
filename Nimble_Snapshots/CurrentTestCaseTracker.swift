@@ -3,7 +3,7 @@ import XCTest
 /// Helper class providing access to the currently executing XCTestCase instance, if any
 @objc
 public final class CurrentTestCaseTracker: NSObject, XCTestObservation {
-    @objc public static let sharedInstance = CurrentTestCaseTracker()
+    @objc public static let shared = CurrentTestCaseTracker()
 
     private(set) var currentTestCase: XCTestCase?
 
