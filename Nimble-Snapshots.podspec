@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
                         "Nimble_Snapshots/DynamicType/*.{swift,m,h}",
                         "Nimble_Snapshots/DynamicSize/*.{swift}"
     ss.dependency "iOSSnapshotTestCase", "~> 6.0"
-    ss.dependency "Nimble", "~> 9.0.0-rc.3"
+    ss.dependency "Nimble", "~> 9.0.0"
   end
 
   # for compatibiliy reasons
